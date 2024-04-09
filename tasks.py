@@ -30,4 +30,4 @@ def swatch(c: Context, prompt:str, name=PROJECT_NAME, negative_prompt:str="", se
     if guidance_scale > 0:
         guide_str = f"--guidance_scale {guidance_scale:.5f}"
 
-    c.run(f"tilemapgen swatch --parent_path /mounted --name {name} --prompt '{prompt}' --num_images {num_images} {neg_promt_str} {seed_str} {num_inf_str} {guide_str}")
+    c.run(f"tilemapgen swatch --parent_path /output --name {name} --prompt '{prompt}' --num_images {num_images} {neg_promt_str} {seed_str} {num_inf_str} {guide_str}")

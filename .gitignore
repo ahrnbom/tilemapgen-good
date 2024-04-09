@@ -1,6 +1,3 @@
-projects/example-project/swatches
-projects/example-project/rendered-tiles
-projects/example-projct/generated-tiles
-projects/example-project/tilemaps
 *.egg-info
 __pycache__
+output/**
