@@ -8,7 +8,8 @@ COPY pytorch3d-version.py /pt3dv.py
 RUN VER=$(python3 /pt3dv.py) && pip install --no-index --no-cache-dir pytorch3d==0.7.6 -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/$VER/download.html
 
 RUN echo "echo \033[3\;33m    TILEMAPGEN-GOOD" >> /root/.bashrc && \
-echo "echo Syntax: inv \<task\>" >> /root/.bashrc && \
+    echo "echo Syntax: inv \<task\>" >> /root/.bashrc && \
+    echo "For help: inv --help \<task\>" >> /root/.bashrc && \
     echo "cd /tilemapgen-good && inv -l" >> /root/.bashrc && \
     echo "echo \033[0m" >> /root/.bashrc && \
     echo "cd /tilemapgen-good && source <(inv --print-completion-script bash)" >> /root/.bashrc

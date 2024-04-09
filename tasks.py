@@ -31,3 +31,7 @@ def swatch(c: Context, prompt:str, name=PROJECT_NAME, negative_prompt:str="", se
         guide_str = f"--guidance_scale {guidance_scale:.5f}"
 
     c.run(f"tilemapgen swatch --parent_path /output --name {name} --prompt '{prompt}' --num_images {num_images} {neg_promt_str} {seed_str} {num_inf_str} {guide_str}")
+
+@task(install)
+def render_tile(c: Context, wall_texture_id: str, floor_texture_id: str, name=PROJECT_NAME):
+    c.run(f"tilemapgen render-tile --parent_path /output --name {name} --wall_texture_id={wall_texture_id} --floor_texture_id={floor_texture_id}")
