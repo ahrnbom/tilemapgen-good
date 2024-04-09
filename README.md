@@ -14,3 +14,6 @@ cd tilemapgen-good && \
 ```
 
 If you have a rootful installation of Docker (which is the default), you will need to replace the last line by `sudo ./run.sh`.
+
+### Why?
+The original tilemapgen repository made several design choices that made it very difficult to install and run. In particular, its mix of pinned and unpinned dependencies was a problem. PyTorch is somewhat picky to install, if you want proper GPU support. PyTorch3d is even more picky. And conda is a somewhat complicated tool that further complicates the process. This fork tries to solve these problems by a simple Dockerfile setup. This should be very useful, even if you decide to not use Docker yourself, as the actual install commands are all there and easily translated to other tools, or a native install.
