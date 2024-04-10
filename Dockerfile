@@ -8,9 +8,12 @@ COPY pytorch3d-version.py /pt3dv.py
 RUN VER=$(python3 /pt3dv.py) && pip install --no-index --no-cache-dir pytorch3d==0.7.6 -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/$VER/download.html
 
 # Install maptilegen-good
-RUN apt-get update && apt-get install -y git && apt-get clean
-RUN git clone https://github.com/ahrnbom/tilemapgen-good /tilemapgen-good
+COPY . /tilemapgen-good
 RUN cd /tilemapgen-good && pip install -e .
+
+# Fetch stable diffusion models
+RUN cd /tilemapgen-good/ && python3 -c "from tilemapgen.stable_diffusion import get_txt2img_pipe; get_txt2img_pipe()"
+RUN cd /tilemapgen-good/ && python3 -c "from tilemapgen.stable_diffusion import get_depth2img_pipe; get_depth2img_pipe()"
 
 
 RUN echo "echo \033[3\;33m   ~~~ TILEMAPGEN-GOOD ~~~" >> /root/.bashrc && \
