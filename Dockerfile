@@ -7,11 +7,15 @@ RUN python3 -m pip install fvcore==0.1.5.post20221221 iopath==0.1.10 transformer
 COPY pytorch3d-version.py /pt3dv.py
 RUN VER=$(python3 /pt3dv.py) && pip install --no-index --no-cache-dir pytorch3d==0.7.6 -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/$VER/download.html
 
-RUN echo "cd /tilemapgen-good && pip install -e . -q -q" >> /root/.bashrc && \
-    echo "echo \033[3\;33m   ~~~ TILEMAPGEN-GOOD ~~~" >> /root/.bashrc && \
+# Install maptilegen-good
+RUN apt-get update && apt-get install -y git && apt-get clean
+RUN git clone https://github.com/ahrnbom/tilemapgen-good /tilemapgen-good
+RUN cd /tilemapgen-good && pip install -e .
+
+
+RUN echo "echo \033[3\;33m   ~~~ TILEMAPGEN-GOOD ~~~" >> /root/.bashrc && \
     echo "echo Make sure to use --parent_path /output on your tilemapgen commands!" >> /root/.bashrc && \
     echo "echo \033[0m" >> /root/.bashrc && \
     echo "PS1='\[\e[1;33m\] 🦆 \[\e[1;36m\]\w:\[\e[0;0m\]$ '" >> /root/.bashrc
-
 
 WORKDIR /tilemapgen-good
