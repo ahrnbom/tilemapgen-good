@@ -8,7 +8,7 @@ COPY pytorch3d-version.py /pt3dv.py
 RUN VER=$(python3 /pt3dv.py) && pip install --no-index --no-cache-dir pytorch3d==0.7.6 -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/$VER/download.html
 
 # Install maptilegen-good
-COPY . /tilemapgen-good
+COPY ./package /tilemapgen-good
 RUN cd /tilemapgen-good && pip install -e .
 
 # Fetch stable diffusion models
